@@ -1,0 +1,145 @@
+/*!****************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/editor.scss ***!
+  \****************************************************************************************************************************************************************************************************************************************/
+.wp-block-mrs-team-members {
+  display: block;
+}
+.wp-block-mrs-team-members.has-1-columns .block-editor-inner-blocks .block-editor-block-list__layout > [data-type="mrs/team-member"] {
+  width: calc(100% / 1 - 20px);
+}
+.wp-block-mrs-team-members.has-1-columns .block-editor-inner-blocks .block-editor-block-list__layout .block-list-appender {
+  width: calc(100% / 1 - 20px);
+  border: 1px dashed #555;
+  min-height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.wp-block-mrs-team-members.has-2-columns .block-editor-inner-blocks .block-editor-block-list__layout > [data-type="mrs/team-member"] {
+  width: calc(100% / 2 - 20px);
+}
+.wp-block-mrs-team-members.has-2-columns .block-editor-inner-blocks .block-editor-block-list__layout .block-list-appender {
+  width: calc(100% / 2 - 20px);
+  border: 1px dashed #555;
+  min-height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.wp-block-mrs-team-members.has-3-columns .block-editor-inner-blocks .block-editor-block-list__layout > [data-type="mrs/team-member"] {
+  width: calc(100% / 3 - 20px);
+}
+.wp-block-mrs-team-members.has-3-columns .block-editor-inner-blocks .block-editor-block-list__layout .block-list-appender {
+  width: calc(100% / 3 - 20px);
+  border: 1px dashed #555;
+  min-height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.wp-block-mrs-team-members.has-4-columns .block-editor-inner-blocks .block-editor-block-list__layout > [data-type="mrs/team-member"] {
+  width: calc(100% / 4 - 20px);
+}
+.wp-block-mrs-team-members.has-4-columns .block-editor-inner-blocks .block-editor-block-list__layout .block-list-appender {
+  width: calc(100% / 4 - 20px);
+  border: 1px dashed #555;
+  min-height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.wp-block-mrs-team-members.has-5-columns .block-editor-inner-blocks .block-editor-block-list__layout > [data-type="mrs/team-member"] {
+  width: calc(100% / 5 - 20px);
+}
+.wp-block-mrs-team-members.has-5-columns .block-editor-inner-blocks .block-editor-block-list__layout .block-list-appender {
+  width: calc(100% / 5 - 20px);
+  border: 1px dashed #555;
+  min-height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.wp-block-mrs-team-members.has-6-columns .block-editor-inner-blocks .block-editor-block-list__layout > [data-type="mrs/team-member"] {
+  width: calc(100% / 6 - 20px);
+}
+.wp-block-mrs-team-members.has-6-columns .block-editor-inner-blocks .block-editor-block-list__layout .block-list-appender {
+  width: calc(100% / 6 - 20px);
+  border: 1px dashed #555;
+  min-height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.wp-block-mrs-team-members .block-editor-inner-blocks .block-editor-block-list__layout {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -10px;
+  margin-right: -10px;
+}
+.wp-block-mrs-team-members .block-editor-inner-blocks .block-editor-block-list__layout [data-type="mrs/team-member"] {
+  margin: 0;
+}
+.wp-block-mrs-team-members .block-editor-inner-blocks .block-editor-block-list__layout > [data-type="mrs/team-member"] {
+  margin: 10px;
+}
+.wp-block-mrs-team-members .block-editor-inner-blocks .block-editor-block-list__layout > [data-type="mrs/team-member"] .mrs-team-members-img {
+  position: relative;
+}
+.wp-block-mrs-team-members .block-editor-inner-blocks .block-editor-block-list__layout > [data-type="mrs/team-member"] .mrs-team-members-img.is-loading img {
+  opacity: 0.4;
+}
+.wp-block-mrs-team-members .block-editor-inner-blocks .block-editor-block-list__layout > [data-type="mrs/team-member"] .mrs-team-members-img .components-spinner {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+.wp-block-mrs-team-members .block-editor-inner-blocks .block-editor-block-list__layout > [data-type="mrs/team-member"] h4 {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+.wp-block-mrs-team-members .block-editor-inner-blocks .block-editor-block-list__layout > [data-type="mrs/team-member"] p {
+  margin-top: 10px;
+}
+.wp-block-mrs-team-members .block-editor-inner-blocks .block-editor-block-list__layout > [data-type="mrs/team-member"] img {
+  width: 100%;
+  height: auto;
+}
+.wp-block-mrs-team-members .block-editor-inner-blocks .block-editor-block-list__layout > [data-type="mrs/team-member"] .mrs-team-members-social-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 15px -5px 0;
+}
+.wp-block-mrs-team-members .block-editor-inner-blocks .block-editor-block-list__layout > [data-type="mrs/team-member"] .mrs-team-members-social-links ul li {
+  display: inline-block;
+  margin: 5px;
+}
+.wp-block-mrs-team-members .block-editor-inner-blocks .block-editor-block-list__layout > [data-type="mrs/team-member"] .mrs-team-members-social-links ul li button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+.wp-block-mrs-team-members .block-editor-inner-blocks .block-editor-block-list__layout > [data-type="mrs/team-member"] .mrs-team-members-social-links ul li button span.dashicon {
+  color: #4e4e4e;
+}
+.wp-block-mrs-team-members .block-editor-inner-blocks .block-editor-block-list__layout > [data-type="mrs/team-member"] .mrs-team-members-social-links ul li button:hover span.dashicon {
+  color: #000;
+}
+.wp-block-mrs-team-members .block-editor-inner-blocks .block-editor-block-list__layout > [data-type="mrs/team-member"] .mrs-team-members-social-links ul li.mrs-team-members-social-links-add-link-li {
+  outline: 1px dashed #3e3e3e;
+}
+.wp-block-mrs-team-members .block-editor-inner-blocks .block-editor-block-list__layout > [data-type="mrs/team-member"] .mrs-team-members-social-links ul li.is-selected {
+  outline: 1px solid #0026ff;
+}
+
+/*# sourceMappingURL=index.css.map*/

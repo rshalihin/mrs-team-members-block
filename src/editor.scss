@@ -1,0 +1,104 @@
+
+.wp-block-mrs-team-members {
+	display: block;
+
+	@for $i from 1 through 6 {
+		&.has-#{$i}-columns {
+			.block-editor-inner-blocks {
+				.block-editor-block-list__layout {
+					> [data-type="mrs/team-member"] {
+						width: calc( 100% / #{$i} - 20px );
+					}
+					.block-list-appender {
+						width: calc( 100% / #{$i} - 20px );
+						border: 1px dashed #555;
+						min-height: 70px;
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						position: relative;
+					}
+				}
+			}
+		}
+	}
+	.block-editor-inner-blocks {
+		.block-editor-block-list__layout {
+			display: flex;
+			flex-wrap: wrap;
+			margin-left: -10px;
+			margin-right: -10px;
+			
+			[data-type="mrs/team-member"] {
+				margin: 0;				
+			}
+			>[data-type="mrs/team-member"] {
+				margin: 10px;
+
+				.mrs-team-members-img {
+					position: relative;
+
+					&.is-loading img {
+						opacity: 0.4;
+					}
+					.components-spinner {
+						position: absolute;
+						left: 0;
+						right: 0;
+						top: 0;
+						bottom: 0;
+						margin: auto;
+					}
+				}
+				h4 {
+					margin: 0;
+					padding: 0;
+					font-family: sans-serif;
+				}
+				p {
+					margin-top: 10px;
+				}
+				img {
+					width: 100%;
+                    height: auto;
+				}
+				.mrs-team-members-social-links {
+					
+					ul {
+						list-style: none;
+						padding: 0;
+						margin: 15px -5px 0;
+
+						li {
+							display: inline-block;
+							margin: 5px;
+
+							button {
+								background: none;
+								border: none;
+								padding: 0;								
+								cursor: pointer;
+
+								span.dashicon {									
+								color: #4e4e4e;
+								}
+								&:hover {
+                                    span.dashicon {
+                                        color: #000;
+                                    }
+                                }
+							}
+							&.mrs-team-members-social-links-add-link-li {
+								outline: 1px dashed #3e3e3e;
+							}
+							&.is-selected {
+								outline: 1px solid #0026ff;
+							}
+						}
+					}
+				}
+				
+			}
+		}
+	}
+}

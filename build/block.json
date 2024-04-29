@@ -1,0 +1,91 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "mrs/team-members",
+  "version": "0.1.0",
+  "title": "MRS Team Members",
+  "category": "mrs-block",
+  "icon": "groups",
+  "description": "A simple Gutenberg block to organize and show team members details.",
+  "supports": {
+    "html": false,
+    "align": [
+      "wide"
+    ]
+  },
+  "attributes": {
+    "columns": {
+      "type": "number",
+      "default": 3
+    }
+  },
+  "textdomain": "team-members",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "viewScript": "file:./view.js",
+  "example": {
+    "attributes": {
+      "columns": 3
+    },
+    "innerBlocks": [
+      {
+        "name": "mrs/team-member",
+        "attributes": {
+          "name": "John Doe",
+          "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing",
+          "url": "https://picsum.photos/id/1010/200/300",
+          "socialLinks": [
+            {
+              "icon": "facebook"
+            },
+            {
+              "icon": "twitter"
+            },
+            {
+              "icon": "instagram"
+            }
+          ]
+        }
+      },
+      {
+        "name": "mrs/team-member",
+        "attributes": {
+          "name": "Jane Doe",
+          "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing",
+          "url": "https://picsum.photos/id/1011/200/300",
+          "socialLinks": [
+            {
+              "icon": "facebook"
+            },
+            {
+              "icon": "twitter"
+            },
+            {
+              "icon": "instagram"
+            }
+          ]
+        }
+      },
+      {
+        "name": "mrs/team-member",
+        "attributes": {
+          "name": "Jonathon Doe",
+          "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing",
+          "url": "https://picsum.photos/id/1012/200/300",
+          "socialLinks": [
+            {
+              "icon": "facebook"
+            },
+            {
+              "icon": "twitter"
+            },
+            {
+              "icon": "instagram"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
