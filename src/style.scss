@@ -53,4 +53,51 @@
 		}
 		
 	}
+	&.is-style-modern-block {
+		.wp-block-mrs-team-member {
+			display: flex;
+			flex-direction: column;
+			text-align: center;
+			align-items: center;
+			padding-top: 34px;
+			
+			&.has-shadow-opacity-10 {
+				box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+			 }
+			 &.has-shadow-opacity-20 {
+				box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+			 }
+			 &.has-shadow-opacity-30 {
+				box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+			 }
+			 &.has-shadow-opacity-40 {
+				box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+			 }
+			 &.has-shadow-opacity-50 {
+				box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+			 }
+			h4 {
+				margin-top: 15px;
+			}
+			p {
+                margin-bottom: 8px;
+            }
+			.mrs-team-members-img {
+				clip-path: circle(50% at 50% 50%);
+				width: 130px;
+				height: 130px;
+				margin: auto;
+			}
+			.mrs-team-members-social-links {
+					
+				ul {
+					text-align: center;
+					li {
+						display: inline-block;
+						padding-bottom: 15px;
+					}
+				}
+			}
+		}
+	}
 }

@@ -11,7 +11,11 @@ registerBlockType( 'mrs/team-member', {
     parent: ['mrs/team-members'],
     supports: {
         html: false,
-        reusable: false
+        reusable: false,
+        color: {
+            backgroundColor: true,
+            text: false,
+        }
     },
     attributes: {
         name: {
@@ -62,6 +66,21 @@ registerBlockType( 'mrs/team-member', {
             selector: '.mrs-team-members-social-links ul li a span.dashicon',
             attribute: 'data-icon-color',
             default: '#4e4e4e',
+        },
+        nameColor: {
+            type:'string',
+            default: '#000000'
+        },
+        bioColor: {
+            type:'string',
+            default: '#333333'
+        },
+        shadow:{
+            type: 'boolean',
+            default: false
+        },
+        shadowOpacity: {
+            type: 'number',
         }
     },
 	edit: Edit,

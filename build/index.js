@@ -5564,7 +5564,11 @@ function Edit({
     url,
     alt,
     socialLinks,
-    socialIconColor
+    socialIconColor,
+    nameColor,
+    bioColor,
+    shadow,
+    shadowOpacity
   } = attributes;
   const [blobURL, setBlobURL] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useState)();
   const [selectedLink, setSelectedLink] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useState)();
@@ -5625,6 +5629,9 @@ function Edit({
     label: 'Youtube',
     value: 'youtube'
   }];
+  const getSettingsColor = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_2__.useSelect)(select => {
+    return select('core/block-editor').getSettings();
+  }, []);
   const imageObject = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_2__.useSelect)(select => {
     const {
       getMedia
@@ -5743,6 +5750,21 @@ function Edit({
     }
     ;
   };
+  const onNameColorChange = newColor => {
+    setAttributes({
+      nameColor: newColor
+    });
+  };
+  const onBioColorChange = newColor => {
+    setAttributes({
+      bioColor: newColor
+    });
+  };
+  const onToggleShadowChange = () => {
+    setAttributes({
+      shadow: !shadow
+    });
+  };
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useEffect)(() => {
     if (!id && (0,_wordpress_blob__WEBPACK_IMPORTED_MODULE_6__.isBlobURL)(url)) {
       setAttributes({
@@ -5785,11 +5807,49 @@ function Edit({
         url: newUrl
       });
     }
-  }), socialLinks.length > 0 && selectedLink !== undefined && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.ColorPicker, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Social Icon Color', 'mrs-team-members'),
-    color: socialIconColor,
+  })), socialLinks.length > 0 && selectedLink !== undefined && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Social Icon Color Details', 'mrs-team-members'),
+    initialOpen: false
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.ColorPalette, {
+    "aria-label": (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Social Icon Colors Details', 'mrs-team-members'),
+    colors: getSettingsColor.colors,
+    value: socialIconColor,
     onChange: onSocialIconColorChange
-  }))), url && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.BlockControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.MediaReplaceFlow, {
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Name Color Style', 'mrs-team-members'),
+    initialOpen: false
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.ColorPalette, {
+    colors: getSettingsColor.colors,
+    value: nameColor,
+    onChange: onNameColorChange
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Bio Color Style', 'mrs-team-members'),
+    initialOpen: false
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.ColorPalette, {
+    colors: getSettingsColor.colors,
+    value: bioColor,
+    onChange: onBioColorChange
+  })), isSelected && shadow && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Shadow Settings', 'mrs-team-members'),
+    initialOpen: false
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.RangeControl, {
+    help: "Shadow Opacity",
+    value: shadowOpacity,
+    label: "Shadow Opacity",
+    max: 50,
+    min: 10,
+    step: 10,
+    onChange: newShadowOpacity => {
+      setAttributes({
+        shadowOpacity: newShadowOpacity
+      });
+    }
+  }))), url && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.BlockControls, null, isSelected && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.ToolbarButton, {
+    onClick: onToggleShadowChange,
+    isActive: shadow,
+    icon: 'admin-page',
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Block Shadow', 'mrs-team-members')
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.MediaReplaceFlow, {
     name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Replace', 'mrs-team-members'),
     accept: "image/*",
     allowedTypes: ['image'],
@@ -5800,7 +5860,9 @@ function Edit({
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.ToolbarButton, {
     onClick: removeImage
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Remove Image', 'mrs-team-members'))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.useBlockProps)()
+    ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.useBlockProps)({
+      className: shadow ? `has-shadow-opacity-${shadowOpacity}` : null
+    })
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.MediaPlaceholder, {
     icon: 'admin-users',
     accept: "image/*",
@@ -5820,12 +5882,18 @@ function Edit({
     tagName: "h4",
     placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enter Team Member Name'),
     value: name,
-    onChange: onNameChange
+    onChange: onNameChange,
+    style: {
+      color: nameColor
+    }
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.RichText, {
     tagName: "p",
     placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enter Team Member Details'),
     value: bio,
-    onChange: onBioChange
+    onChange: onBioChange,
+    style: {
+      color: bioColor
+    }
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "mrs-team-members-social-links"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_dnd_kit_core__WEBPACK_IMPORTED_MODULE_8__.DndContext, {
@@ -5896,7 +5964,11 @@ __webpack_require__.r(__webpack_exports__);
   parent: ['mrs/team-members'],
   supports: {
     html: false,
-    reusable: false
+    reusable: false,
+    color: {
+      backgroundColor: true,
+      text: false
+    }
   },
   attributes: {
     name: {
@@ -5947,6 +6019,21 @@ __webpack_require__.r(__webpack_exports__);
       selector: '.mrs-team-members-social-links ul li a span.dashicon',
       attribute: 'data-icon-color',
       default: '#4e4e4e'
+    },
+    nameColor: {
+      type: 'string',
+      default: '#000000'
+    },
+    bioColor: {
+      type: 'string',
+      default: '#333333'
+    },
+    shadow: {
+      type: 'boolean',
+      default: false
+    },
+    shadowOpacity: {
+      type: 'number'
     }
   },
   edit: _edit__WEBPACK_IMPORTED_MODULE_1__["default"],
@@ -5984,20 +6071,34 @@ function save({
     url,
     alt,
     socialLinks,
-    socialIconColor
+    socialIconColor,
+    nameColor,
+    bioColor,
+    shadowOpacity,
+    shadow
   } = attributes;
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save()
-  }, url && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+    ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save({
+      className: shadow ? `has-shadow-opacity-${shadowOpacity}` : null
+    })
+  }, url && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "mrs-team-members-img"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
     className: id ? `wp-image-${id}` : null,
     src: url,
     alt: alt
-  }), name && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText.Content, {
+  })), name && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText.Content, {
     tagName: "h4",
-    value: name
+    value: name,
+    style: {
+      color: nameColor
+    }
   }), bio && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText.Content, {
     tagName: "p",
-    value: bio
+    value: bio,
+    style: {
+      color: bioColor
+    }
   }), socialLinks.length > 0 && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "mrs-team-members-social-links"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", null, socialLinks && socialLinks.map((item, index) => {
@@ -6213,7 +6314,7 @@ module.exports = window["wp"]["i18n"];
   \************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"mrs/team-members","version":"0.1.0","title":"MRS Team Members","category":"mrs-block","icon":"groups","description":"A simple Gutenberg block to organize and show team members details.","supports":{"html":false,"align":["wide"]},"attributes":{"columns":{"type":"number","default":3}},"textdomain":"team-members","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js","example":{"attributes":{"columns":3},"innerBlocks":[{"name":"mrs/team-member","attributes":{"name":"John Doe","bio":"Lorem ipsum dolor sit amet, consectetur adipiscing","url":"https://picsum.photos/id/1010/200/300","socialLinks":[{"icon":"facebook"},{"icon":"twitter"},{"icon":"instagram"}]}},{"name":"mrs/team-member","attributes":{"name":"Jane Doe","bio":"Lorem ipsum dolor sit amet, consectetur adipiscing","url":"https://picsum.photos/id/1011/200/300","socialLinks":[{"icon":"facebook"},{"icon":"twitter"},{"icon":"instagram"}]}},{"name":"mrs/team-member","attributes":{"name":"Jonathon Doe","bio":"Lorem ipsum dolor sit amet, consectetur adipiscing","url":"https://picsum.photos/id/1012/200/300","socialLinks":[{"icon":"facebook"},{"icon":"twitter"},{"icon":"instagram"}]}}]}}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"mrs/team-members","version":"0.1.0","title":"MRS Team Members","category":"mrs-block","icon":"groups","description":"A simple Gutenberg block to organize and show team members details.","supports":{"html":false,"align":["wide"]},"styles":[{"name":"classic-block","label":"Classic Block","isDefault":true},{"name":"modern-block","label":"Modern Block","isDefault":false}],"attributes":{"columns":{"type":"number","default":3}},"textdomain":"team-members","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js","example":{"attributes":{"columns":3},"innerBlocks":[{"name":"mrs/team-member","attributes":{"name":"John Doe","bio":"Lorem ipsum dolor sit amet, consectetur adipiscing","url":"https://picsum.photos/id/1010/200/300","socialLinks":[{"icon":"facebook"},{"icon":"twitter"},{"icon":"instagram"}]}},{"name":"mrs/team-member","attributes":{"name":"Jane Doe","bio":"Lorem ipsum dolor sit amet, consectetur adipiscing","url":"https://picsum.photos/id/1011/200/300","socialLinks":[{"icon":"facebook"},{"icon":"twitter"},{"icon":"instagram"}]}},{"name":"mrs/team-member","attributes":{"name":"Jonathon Doe","bio":"Lorem ipsum dolor sit amet, consectetur adipiscing","url":"https://picsum.photos/id/1012/200/300","socialLinks":[{"icon":"facebook"},{"icon":"twitter"},{"icon":"instagram"}]}}]}}');
 
 /***/ })
 

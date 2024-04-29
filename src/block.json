@@ -11,6 +11,18 @@
 		"html": false,
 		"align": ["wide"]
 	},
+	"styles": [
+		{
+			"name": "classic-block",
+			"label": "Classic Block",
+            "isDefault": true
+		},
+		{
+			"name": "modern-block",
+            "label": "Modern Block",
+            "isDefault": false
+		}
+	],
 	"attributes": {
 		"columns": {
 			"type": "number",

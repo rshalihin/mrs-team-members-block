@@ -4,14 +4,14 @@ import { usePrevious } from "@wordpress/compose";
 import { useEffect, useState, useRef } from "@wordpress/element";
 import { useBlockProps, RichText, MediaPlaceholder, BlockControls, MediaReplaceFlow, InspectorControls } from '@wordpress/block-editor';
 import { isBlobURL, revokeBlobURL } from "@wordpress/blob";
-import { Icon, Spinner, ToolbarButton, PanelBody, TextareaControl, withNotices, SelectControl, Tooltip, TextControl, Button, ColorPicker } from "@wordpress/components";
+import { Icon, Spinner, ToolbarButton, PanelBody, TextareaControl, withNotices, SelectControl, Tooltip, TextControl, Button, ColorPalette, RangeControl } from "@wordpress/components";
 import { DndContext, useSensor, useSensors, PointerSensor } from "@dnd-kit/core";
 import { SortableContext, horizontalListSortingStrategy, arrayMove } from "@dnd-kit/sortable";
 import SortableItem from "./sortable-item";
 import { restrictToHorizontalAxis } from "@dnd-kit/modifiers";
 
 function Edit({ attributes, setAttributes, noticeOperations, noticeUI, isSelected}) {
-    const { name, bio, id, url, alt, socialLinks, socialIconColor } = attributes;
+    const { name, bio, id, url, alt, socialLinks, socialIconColor, nameColor, bioColor, shadow, shadowOpacity } = attributes;
     const [ blobURL, setBlobURL ] = useState();
     const [ selectedLink, setSelectedLink ] = useState();
     const titleRef = useRef();
@@ -39,6 +39,11 @@ function Edit({ attributes, setAttributes, noticeOperations, noticeUI, isSelecte
         { label: 'Xing', value: 'xing'},
         { label: 'Youtube', value: 'youtube'},
     ];
+
+    const getSettingsColor = useSelect((select) => {
+        return select('core/block-editor').getSettings();
+    }, []);
+
 
     const imageObject = useSelect( (select) => {
         const { getMedia } = select('core');
@@ -127,6 +132,15 @@ function Edit({ attributes, setAttributes, noticeOperations, noticeUI, isSelecte
             setSelectedLink(newIndex);
         };
     };
+    const onNameColorChange = (newColor) => {
+        setAttributes({nameColor: newColor});
+    }
+    const onBioColorChange = (newColor) => {
+        setAttributes({bioColor: newColor});
+    }
+    const onToggleShadowChange =  () => {
+        setAttributes({ shadow: !shadow });
+    }
 
     useEffect( () => {
         if ( !id && isBlobURL( url ) ) {
@@ -172,16 +186,55 @@ function Edit({ attributes, setAttributes, noticeOperations, noticeUI, isSelecte
                         options={imageSizesOptions()}
                         onChange={(newUrl) => {setAttributes({url: newUrl})}}
                     />
+                </PanelBody>
+                
                     {socialLinks.length > 0 && selectedLink !== undefined &&
-                    <ColorPicker
-                        label={__('Social Icon Color', 'mrs-team-members')}
-                        color={socialIconColor}
-                        onChange={onSocialIconColorChange}
+                    <PanelBody title={__('Social Icon Color Details', 'mrs-team-members')} initialOpen={false}>
+                    <ColorPalette
+                    aria-label={__('Social Icon Colors Details', 'mrs-team-members')}
+                    colors={getSettingsColor.colors}
+                    value={socialIconColor}
+                    onChange={onSocialIconColorChange}
+                    />                    
+                </PanelBody>}
+                <PanelBody title={__('Name Color Style', 'mrs-team-members')} initialOpen={false}>
+                    {<ColorPalette
+                        colors={getSettingsColor.colors}
+                        value={nameColor}
+                        onChange={onNameColorChange}
                     />}
                 </PanelBody>
+                <PanelBody title={__('Bio Color Style', 'mrs-team-members')} initialOpen={false}>
+                    {<ColorPalette
+                        colors={getSettingsColor.colors}
+                        value={bioColor}
+                        onChange={onBioColorChange}
+                    />}
+                    
+                </PanelBody>
+                { isSelected && shadow &&
+                <PanelBody title={__('Shadow Settings', 'mrs-team-members')} initialOpen={false}>
+                    <RangeControl
+                        help="Shadow Opacity"
+                        value={shadowOpacity}
+                        label="Shadow Opacity"
+                        max={50}
+                        min={10}
+                        step={10}
+                        onChange={(newShadowOpacity) => {setAttributes({shadowOpacity: newShadowOpacity})}}
+                    />
+                </PanelBody>
+                }
             </InspectorControls>
             { url && (
             <BlockControls>
+                { isSelected && 
+                <ToolbarButton
+                    onClick={onToggleShadowChange}
+                    isActive={shadow}
+                    icon={'admin-page'}
+                    label={__('Block Shadow', 'mrs-team-members')}
+                />}
                 <MediaReplaceFlow
                     name={ __('Replace', 'mrs-team-members')}
                     accept='image/*'
@@ -190,13 +243,15 @@ function Edit({ attributes, setAttributes, noticeOperations, noticeUI, isSelecte
                     onSelectURL={onSelectURLImage}
                     mediaId={id}
                     mediaURL={url}
-                />  
+                />
                 <ToolbarButton onClick={removeImage}>
                     {__('Remove Image', 'mrs-team-members')}
-                </ToolbarButton>                
+                </ToolbarButton>
             </BlockControls>
             )}
-            <div { ...useBlockProps() }>
+            <div { ...useBlockProps({
+                className: shadow ? `has-shadow-opacity-${shadowOpacity}` : null
+            }) }>
                 <MediaPlaceholder
                     icon={'admin-users'}
                     accept='image/*'
@@ -219,12 +274,14 @@ function Edit({ attributes, setAttributes, noticeOperations, noticeUI, isSelecte
                     placeholder={ __( 'Enter Team Member Name' ) }
                     value={ name }
                     onChange={onNameChange}
+                    style={{color: nameColor}}
                 />
                 <RichText
                     tagName='p'
                     placeholder={ __( 'Enter Team Member Details' ) }
                     value={ bio }
                     onChange={onBioChange}
+                    style={{color: bioColor}}
                 />
                 <div className='mrs-team-members-social-links'>
                     <ul>

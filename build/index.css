@@ -141,5 +141,50 @@
 .wp-block-mrs-team-members .block-editor-inner-blocks .block-editor-block-list__layout > [data-type="mrs/team-member"] .mrs-team-members-social-links ul li.is-selected {
   outline: 1px solid #0026ff;
 }
+.wp-block-mrs-team-members.is-style-modern-block .block-editor-inner-blocks .block-editor-block-list__layout [data-type="mrs/team-member"] {
+  box-shadow: none;
+}
+.wp-block-mrs-team-members.is-style-modern-block .block-editor-inner-blocks .block-editor-block-list__layout > [data-type="mrs/team-member"] {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  background-color: #ff894c;
+  padding-top: 34px;
+}
+.wp-block-mrs-team-members.is-style-modern-block .block-editor-inner-blocks .block-editor-block-list__layout > [data-type="mrs/team-member"]:has(.has-shadow-opacity-10) {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+.wp-block-mrs-team-members.is-style-modern-block .block-editor-inner-blocks .block-editor-block-list__layout > [data-type="mrs/team-member"]:has(.has-shadow-opacity-20) {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+.wp-block-mrs-team-members.is-style-modern-block .block-editor-inner-blocks .block-editor-block-list__layout > [data-type="mrs/team-member"]:has(.has-shadow-opacity-30) {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+.wp-block-mrs-team-members.is-style-modern-block .block-editor-inner-blocks .block-editor-block-list__layout > [data-type="mrs/team-member"]:has(.has-shadow-opacity-40) {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+}
+.wp-block-mrs-team-members.is-style-modern-block .block-editor-inner-blocks .block-editor-block-list__layout > [data-type="mrs/team-member"]:has(.has-shadow-opacity-50) {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+.wp-block-mrs-team-members.is-style-modern-block .block-editor-inner-blocks .block-editor-block-list__layout > [data-type="mrs/team-member"] h4 {
+  margin-top: 15px;
+}
+.wp-block-mrs-team-members.is-style-modern-block .block-editor-inner-blocks .block-editor-block-list__layout > [data-type="mrs/team-member"] p {
+  margin-bottom: 8px;
+}
+.wp-block-mrs-team-members.is-style-modern-block .block-editor-inner-blocks .block-editor-block-list__layout > [data-type="mrs/team-member"] .mrs-team-members-img {
+  clip-path: circle(50% at 50% 50%);
+  width: 130px;
+  height: 130px;
+  margin: auto;
+}
+.wp-block-mrs-team-members.is-style-modern-block .block-editor-inner-blocks .block-editor-block-list__layout > [data-type="mrs/team-member"] .mrs-team-members-social-links ul {
+  text-align: center;
+}
+.wp-block-mrs-team-members.is-style-modern-block .block-editor-inner-blocks .block-editor-block-list__layout > [data-type="mrs/team-member"] .mrs-team-members-social-links ul li {
+  display: inline-block;
+  padding-bottom: 15px;
+}
 
 /*# sourceMappingURL=index.css.map*/
