@@ -5568,7 +5568,9 @@ function Edit({
     nameColor,
     bioColor,
     shadow,
-    shadowOpacity
+    shadowOpacity,
+    border,
+    borderRadius
   } = attributes;
   const [blobURL, setBlobURL] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useState)();
   const [selectedLink, setSelectedLink] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useState)();
@@ -5765,6 +5767,11 @@ function Edit({
       shadow: !shadow
     });
   };
+  const onToggleBorderChange = () => {
+    setAttributes({
+      border: !border
+    });
+  };
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useEffect)(() => {
     if (!id && (0,_wordpress_blob__WEBPACK_IMPORTED_MODULE_6__.isBlobURL)(url)) {
       setAttributes({
@@ -5844,11 +5851,31 @@ function Edit({
         shadowOpacity: newShadowOpacity
       });
     }
+  })), isSelected && border && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Border Settings', 'mrs-team-members'),
+    initialOpen: false
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.RangeControl, {
+    help: "Border Radius Settings",
+    value: borderRadius,
+    label: "Border Radius Settings",
+    max: 50,
+    min: 10,
+    step: 10,
+    onChange: newBorder => {
+      setAttributes({
+        borderRadius: newBorder
+      });
+    }
   }))), url && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.BlockControls, null, isSelected && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.ToolbarButton, {
     onClick: onToggleShadowChange,
     isActive: shadow,
     icon: 'admin-page',
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Block Shadow', 'mrs-team-members')
+  }), isSelected && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.ToolbarButton, {
+    onClick: onToggleBorderChange,
+    isActive: border,
+    icon: 'grid-view',
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Border Radius', 'mrs-team-members')
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.MediaReplaceFlow, {
     name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Replace', 'mrs-team-members'),
     accept: "image/*",
@@ -5861,7 +5888,7 @@ function Edit({
     onClick: removeImage
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Remove Image', 'mrs-team-members'))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.useBlockProps)({
-      className: shadow ? `has-shadow-opacity-${shadowOpacity}` : null
+      className: `${shadow ? `has-shadow-opacity-${shadowOpacity}` : ''} ${border ? `has-border-radius-${borderRadius}` : ''}`
     })
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.MediaPlaceholder, {
     icon: 'admin-users',
@@ -6033,7 +6060,16 @@ __webpack_require__.r(__webpack_exports__);
       default: false
     },
     shadowOpacity: {
-      type: 'number'
+      type: 'number',
+      default: 40
+    },
+    borderRadius: {
+      type: 'number',
+      default: 10
+    },
+    border: {
+      type: 'boolean',
+      default: false
     }
   },
   edit: _edit__WEBPACK_IMPORTED_MODULE_1__["default"],
@@ -6075,11 +6111,13 @@ function save({
     nameColor,
     bioColor,
     shadowOpacity,
-    shadow
+    shadow,
+    border,
+    borderRadius
   } = attributes;
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save({
-      className: shadow ? `has-shadow-opacity-${shadowOpacity}` : null
+      className: `${shadow ? `has-shadow-opacity-${shadowOpacity}` : ''} ${border ? `has-border-radius-${borderRadius}` : ''}`
     })
   }, url && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "mrs-team-members-img"

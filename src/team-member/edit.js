@@ -11,7 +11,7 @@ import SortableItem from "./sortable-item";
 import { restrictToHorizontalAxis } from "@dnd-kit/modifiers";
 
 function Edit({ attributes, setAttributes, noticeOperations, noticeUI, isSelected}) {
-    const { name, bio, id, url, alt, socialLinks, socialIconColor, nameColor, bioColor, shadow, shadowOpacity } = attributes;
+    const { name, bio, id, url, alt, socialLinks, socialIconColor, nameColor, bioColor, shadow, shadowOpacity, border, borderRadius } = attributes;
     const [ blobURL, setBlobURL ] = useState();
     const [ selectedLink, setSelectedLink ] = useState();
     const titleRef = useRef();
@@ -141,6 +141,9 @@ function Edit({ attributes, setAttributes, noticeOperations, noticeUI, isSelecte
     const onToggleShadowChange =  () => {
         setAttributes({ shadow: !shadow });
     }
+    const onToggleBorderChange = () => {
+        setAttributes({ border: !border });
+    }
 
     useEffect( () => {
         if ( !id && isBlobURL( url ) ) {
@@ -225,6 +228,19 @@ function Edit({ attributes, setAttributes, noticeOperations, noticeUI, isSelecte
                     />
                 </PanelBody>
                 }
+                { isSelected && border &&
+                <PanelBody title={__('Border Settings', 'mrs-team-members')} initialOpen={false}>
+                    <RangeControl
+                        help="Border Radius Settings"
+                        value={borderRadius}
+                        label="Border Radius Settings"
+                        max={50}
+                        min={10}
+                        step={10}
+                        onChange={(newBorder) => {setAttributes({borderRadius: newBorder})}}
+                    />
+                </PanelBody>
+                }
             </InspectorControls>
             { url && (
             <BlockControls>
@@ -234,6 +250,13 @@ function Edit({ attributes, setAttributes, noticeOperations, noticeUI, isSelecte
                     isActive={shadow}
                     icon={'admin-page'}
                     label={__('Block Shadow', 'mrs-team-members')}
+                />}
+                { isSelected && 
+                <ToolbarButton
+                    onClick={onToggleBorderChange}
+                    isActive={border}
+                    icon={'grid-view'}
+                    label={__('Border Radius', 'mrs-team-members')}
                 />}
                 <MediaReplaceFlow
                     name={ __('Replace', 'mrs-team-members')}
@@ -250,7 +273,7 @@ function Edit({ attributes, setAttributes, noticeOperations, noticeUI, isSelecte
             </BlockControls>
             )}
             <div { ...useBlockProps({
-                className: shadow ? `has-shadow-opacity-${shadowOpacity}` : null
+                className: `${shadow ? `has-shadow-opacity-${shadowOpacity}` : ''} ${border? `has-border-radius-${borderRadius}` : ''}`
             }) }>
                 <MediaPlaceholder
                     icon={'admin-users'}

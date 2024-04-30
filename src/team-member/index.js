@@ -15,7 +15,7 @@ registerBlockType( 'mrs/team-member', {
         color: {
             backgroundColor: true,
             text: false,
-        }
+        },
     },
     attributes: {
         name: {
@@ -81,6 +81,15 @@ registerBlockType( 'mrs/team-member', {
         },
         shadowOpacity: {
             type: 'number',
+            default: 40
+        },
+        borderRadius: {
+            type: 'number',
+            default: 10
+        },
+        border: {
+            type: 'boolean',
+            default: false
         }
     },
 	edit: Edit,

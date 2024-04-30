@@ -34,6 +34,36 @@
 			}
 			>[data-type="mrs/team-member"] {
 				margin: 10px;
+				&:has(.has-shadow-opacity-10) {
+					box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+				 }
+				 &:has(.has-shadow-opacity-20) {
+					box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+				 }
+				 &:has(.has-shadow-opacity-30) {
+					box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+				 }
+				 &:has(.has-shadow-opacity-40) {
+					box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+				 }
+				 &:has(.has-shadow-opacity-50) {
+					box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+				 }
+				&:has(.has-border-radius-10) {
+					border-radius: 10px;
+				 }
+				 &:has(.has-border-radius-20) {
+					border-radius: 20px;
+				 }
+				 &:has(.has-border-radius-30) {
+					border-radius: 30px;
+				 }
+				 &:has(.has-border-radius-40) {
+					border-radius: 40px;
+				 }
+				 &:has(.has-border-radius-50) {
+					border-radius: 50px;
+				 }
 
 				.mrs-team-members-img {
 					position: relative;
@@ -130,7 +160,21 @@
 						 &:has(.has-shadow-opacity-50) {
 							box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 						 }
-
+						 &.has-border-radius-10 {
+							border-radius: 10px;
+						 }
+						 &.has-border-radius-20 {
+							border-radius: 20px;
+						 }
+						 &.has-border-radius-30 {
+							border-radius: 30px;
+						 }
+						 &.has-border-radius-40 {
+							border-radius: 40px;
+						 }
+						 &.has-border-radius-50 {
+							border-radius: 50px;
+						 }
 						h4 {
 							margin-top: 15px;
 						}

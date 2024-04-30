@@ -2,10 +2,10 @@ import { useBlockProps, RichText } from '@wordpress/block-editor';
 import { Icon } from '@wordpress/components';
 
 export default function save({ attributes}) {
-    const { name, bio, id, url, alt, socialLinks, socialIconColor, nameColor, bioColor, shadowOpacity, shadow } = attributes;
+    const { name, bio, id, url, alt, socialLinks, socialIconColor, nameColor, bioColor, shadowOpacity, shadow, border, borderRadius } = attributes;
 	return (
 		<div { ...useBlockProps.save({
-            className: shadow ? `has-shadow-opacity-${shadowOpacity}` : null
+            className: `${shadow ? `has-shadow-opacity-${shadowOpacity}` : ''} ${border? `has-border-radius-${borderRadius}` : ''}`
         }) }>
             {url &&
             <div className='mrs-team-members-img'>
